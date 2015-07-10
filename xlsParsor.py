@@ -5,7 +5,7 @@ from os import listdir
 from os.path import isfile, join
 import datetime
 
-
+#
 def BatchOperator(inputPath):
 	onlyfiles = [inputPath + '\\' + f for f in listdir(inputPath) if isfile(join(inputPath, f))]
 
