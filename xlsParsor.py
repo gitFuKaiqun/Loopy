@@ -45,13 +45,12 @@ def onefileoperate(filedir):
 		# Counting Channels
 		if worksheet.cell_type(curr_row, 1) == 1 and worksheet.cell_value(curr_row, 2) == 'Channel 1':
 			currentDateTime = currentDate + ' ' + "%02d" % (int(worksheet.cell_value(curr_row, 1).split(':')[0]) - 1) + ':00:00'
-			print currentDateTime
 			channelIndex = 1
 		else:
 			channelIndex += 1
 
+		print StationID + '--' + currentDateTime
 		countList = [int(worksheet.cell_value(curr_row, i)) for i in range(3, 20) if worksheet.cell_value(curr_row, i) != '']
-		# print currentDateTime + '  ' + StationID + '  ' + onefile
 
 		InsertionHandle(StationID, currentDateTime, channelIndex, countList)
 
