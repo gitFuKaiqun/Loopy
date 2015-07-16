@@ -16,5 +16,17 @@ cnxn = pyodbc.connect(connStr)
 cursor = cnxn.cursor()
 
 
+def InsertionHandle(StationID, DateT, ChannelIndex, CountList):
+	for i in range(len(CountList)):
+		dataInsert(StationID, DateT, ChannelIndex, i + 1, CountList[i])
+
+
 def dataInsert(StationID, DateT, ChannelIndex, Class, Count):
-	return None
+	try:
+		InsertCommand = "insert into [speed].[tirs].[LoopsClass_new] values ('" + StationID + "','" + DateT + "'," + str(ChannelIndex) + "," + str(Class) + "," + str(Count) + ")"
+		cursor.execute(InsertCommand)
+		cnxn.commit()
+		return "OK"
+	except Exception, e:
+		print str(e.message)
+		return e.message

@@ -4,6 +4,7 @@ import xlrd
 from os import listdir
 from os.path import isfile, join
 import datetime
+from DatabaseOperations import InsertionHandle
 
 #
 def BatchOperator(inputPath):
@@ -49,8 +50,10 @@ def onefileoperate(filedir):
 		else:
 			channelIndex += 1
 
-		print [int(worksheet.cell_value(curr_row, i)) for i in range(3, 20) if worksheet.cell_value(curr_row, i) != '']
+		countList = [int(worksheet.cell_value(curr_row, i)) for i in range(3, 20) if worksheet.cell_value(curr_row, i) != '']
 		# print currentDateTime + '  ' + StationID + '  ' + onefile
+
+		InsertionHandle(StationID, currentDateTime, channelIndex, countList)
 
 
 # BatchOperator('D:\\Software\\LoopsInsert\\testingData\\Class\\2015\\000000000001')

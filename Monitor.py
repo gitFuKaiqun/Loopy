@@ -16,6 +16,11 @@ def newfiledetector(targetdir, targetYear):
 
 	# onetype is the data type: Class, Volume, Speed
 	for onetype in targetTypes:
+
+		# Only select Class for now.
+		if onetype.split('\\')[-1:][0] != 'Class':
+			continue
+
 		# In case of new data types add in
 		if onetype not in PreviousFiles:
 			PreviousFiles[onetype] = {}
